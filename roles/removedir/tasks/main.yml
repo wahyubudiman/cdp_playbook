@@ -1,0 +1,66 @@
+---
+##versi 2.4
+##- name: Stop scm-server Service
+##  service:
+##   name=cloudera-scm-server
+##   state=stopped
+##   enabled=no
+##
+##- name: Stop scm-agent Service
+##  service:
+##   name=cloudera-scm-agent
+##   state=stopped
+##   enabled=no   
+##   
+#- name: remove the cloudera package
+#  yum: 
+#    name: "{{ item }}"
+#    state: removed
+#  with_items:
+#  - cloudera-manager-server
+#  - cloudera-manager-agent
+#  - cloudera-manager-daemons
+#
+- name: remove directory
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+  - /kudu/data/yarn
+  - /kudu/wal/yarn
+  - /data1/dfs
+  - /data2/dfs
+  - /data3/dfs
+  - /data4/dfs
+  - /data5/dfs
+  - /data6/dfs
+  - /data7/dfs
+  - /data8/dfs
+  - /data1/yarn
+  - /data2/yarn
+  - /data3/yarn
+  - /data4/yarn
+  - /data5/yarn
+  - /data6/yarn
+  - /data7/yarn
+  - /data8/yarn
+  - /zk/data
+  - /zk/log
+  - /nn/dfs
+  - /jn/dfs
+
+ 
+#- name: Unmount a mounted volume
+#  mount:
+#    path: /run/cloudera-scm-agent/process
+#    state: unmounted
+#  
+#- name: remove directory awal
+#  shell: rm -Rf /usr/share/cmf /var/lib/cloudera* /var/cache/yum/cloudera* /var/log/cloudera* /var/run/cloudera* /tmp/.scm_prepare_node.lock
+# 
+#- name: remove directory pertama
+#  shell: rm -Rf /var/lib/flume-ng /var/lib/hadoop* /var/lib/hue /var/lib/navigator /var/lib/oozie /var/lib/solr /var/lib/sqoop* /var/lib/zookeeper 
+#  
+#- name: remove directory kedua
+#  shell: rm -Rf /opt/cloudera /etc/hadoop /etc/cloudera-scm-agent /etc/hive /var/run/hdfs-* /var/lib/hive /var/lib/alternatives/hive-conf /etc/alternatives/hive-conf /var/run/hbase /var/log/impalad /var/run/impala /var/lib/impala /var/run/sqoop2 /var/run/solr /var/run/zookeeper /var/run/hadoop-httpfs /var/lib/alternatives/hadoop-conf /etc/alternatives/hadoop-conf
+   

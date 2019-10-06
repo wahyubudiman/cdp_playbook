@@ -1,0 +1,17 @@
+---
+- name: copy host file to target
+  copy:
+    src=/etc/hosts
+    dest=/etc/hosts
+    owner=root
+    group=root
+    mode=0755
+
+- name: Add TD yum repository
+  yum_repository:
+    name: td
+    description: TD Repo
+    baseurl: http://tdbdamgr01/rpm/
+    gpgcheck: no
+    enabled: yes
+  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")

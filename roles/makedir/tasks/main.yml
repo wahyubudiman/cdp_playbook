@@ -1,0 +1,30 @@
+---
+#- name: ansible create directory with_items example
+#- file:
+#      path: {{ item.dest }}
+#      mode: {{item.mode}}
+#      state: directory
+#    with_items:
+#      - { dest: '/data1', mode: '0755'}
+#      - { dest: '/data2', mode: '0755'}
+#      - { dest: '/data3', mode: '0755'}
+#      - { dest: '/data4', mode: '0755'}
+#      - { dest: '/data5', mode: '0755'}
+#      - { dest: '/data6', mode: '0755'}
+#      - { dest: '/data7', mode: '0755'}
+#      - { dest: '/data8', mode: '0755'}
+
+#versi 2.4
+- name: Creates directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - /data1
+  - /data2
+  - /data3
+  - /data4
+  - /data5
+  - /data6
+  - /data7
+  - /data8
