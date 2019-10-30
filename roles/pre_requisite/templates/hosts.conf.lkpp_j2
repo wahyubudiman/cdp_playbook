@@ -1,0 +1,17 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+10.254.2.67  bigdata-utility.lkpp.go.id
+10.254.2.59  bigdata-worker01.lkpp.go.id
+10.254.2.38  bigdata-worker02.lkpp.go.id
+10.254.2.47  bigdata-worker03.lkpp.go.id
+10.254.2.57  bigdata-worker04.lkpp.go.id
+10.254.2.63  bigdata-worker05.lkpp.go.id
+10.254.2.76  bigdata-worker06.lkpp.go.id
+10.254.2.43  bigdata-worker07.lkpp.go.id
+10.254.2.64  bigdata-worker08.lkpp.go.id
+10.254.2.55  bigdata-master01.lkpp.go.id
+10.254.2.41  bigdata-master02.lkpp.go.id
+10.254.2.52  bigdata-master03.lkpp.go.id
+10.254.2.69  bigdata-edge01.lkpp.go.id
+10.254.2.81  bigdata-edge02.lkpp.go.id

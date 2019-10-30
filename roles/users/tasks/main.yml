@@ -1,0 +1,38 @@
+#bikin user
+#cara create hash password via ansible
+#https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module
+#ansible all -i localhost, -m debug -a "msg={{ 'mypwdtd' | password_hash('sha512', 'wahyubudiman') }}"
+#end password hash
+
+- name: Add group "lkppadmin" 
+  group:
+    name: lkppadmin
+    state: present
+
+- name: Add group "lkppdev" 
+  group:
+    name: lkppdev
+    state: present
+
+- name: Create a login user
+  user:
+   name: lkppadmin
+   password: '$6$lkpp$D5l1/8.Dpt.RanlHgiRwg0lVqivqp2JR1JFNo/Dt2LBkIoNY85f56E/SHIhbTmuTni.rGzqJE1RtWTFUMpX///'
+   group: lkppadmin
+   state: present
+   shell: /bin/bash       # Defaults to /bin/bash
+   system: no             # Defaults to no
+   createhome: yes        # Defaults to yes
+   home: /home/lkppadmin  # Defaults to /home/<username>
+
+- name: Create a login user
+  user:
+   name: lkppdev
+   password: '$6$lkpp$.E7ilWqyZxbLK.PeVSc6cyw7NSimIlme26B7GnNjlV2absXWoGIrFTANGl68y/Q/k7ecw3PMC8MhTrkH4MBsT.'
+   group: lkppdev
+   state: present
+   shell: /bin/bash       # Defaults to /bin/bash
+   system: no             # Defaults to no
+   createhome: yes        # Defaults to yes
+   home: /home/lkppdev  # Defaults to /home/<username>
+

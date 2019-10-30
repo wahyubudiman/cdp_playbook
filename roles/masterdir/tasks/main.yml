@@ -1,0 +1,62 @@
+---
+#- name: ansible create directory with_items example
+#- file:
+#      path: {{ item.dest }}
+#      mode: {{item.mode}}
+#      state: directory
+#    with_items:
+#      - { dest: '/data1', mode: '0755'}
+#      - { dest: '/data2', mode: '0755'}
+#      - { dest: '/data3', mode: '0755'}
+#      - { dest: '/data4', mode: '0755'}
+#      - { dest: '/data5', mode: '0755'}
+#      - { dest: '/data6', mode: '0755'}
+#      - { dest: '/data7', mode: '0755'}
+#      - { dest: '/data8', mode: '0755'}
+
+#versi 2.4
+#- name: Creates directory
+#  file:
+#    path: "{{ item }}"
+#    state: directory
+#  with_items:
+#  - /zk
+#  - /nn
+#  - /jn
+
+- name: unMount up device 
+  mount:
+    path: "{{ item.dir }}"
+    state: unmounted
+  with_items:
+    - { dir: /zk }
+    - { dir: /nn }
+    - { dir: /jn }
+    - { dir: /kudu/data }
+    - { dir: /kudu/wal }
+
+- name: Create a xfs filesystem on /dev/vdN
+  filesystem:
+    fstype: xfs
+    force: yes
+    dev: "{{ item }}"
+  with_items:
+    - /dev/sdb
+    - /dev/sdc
+    - /dev/sdd
+    - /dev/sde
+    - /dev/sdf
+  
+- name: Mount up device 
+  mount:
+    path: "{{ item.dir }}"
+    src: "{{ item.disk }}"
+    fstype: xfs
+    opts: defaults,noatime
+    state: mounted
+  with_items:
+    - { dir: /nn, disk: /dev/sdb }
+    - { dir: /kudu/data, disk: /dev/sdc }
+    - { dir: /kudu/wal, disk: /dev/sdd }
+    - { dir: /zk, disk: /dev/sde }
+    - { dir: /jn, disk: /dev/sdf }

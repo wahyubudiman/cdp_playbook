@@ -1,5 +1,5 @@
 # Cloudera Playbook 
-# Edited by WB 8 Juli 2018
+# Edited by WB 30 Oktober 2019
 An Ansible Playbook that installs the Cloudera stack on RHEL/CentOS
 
 # Running the playbook
@@ -64,7 +64,7 @@ worker_servers
 * Run playbook
  
 ```shell
-$ ansible-playbook -i ~/ansible_hosts cloudera-playbook/site.yml
+$ ansible-playbook -i inventory/ansible_hosts site.yml
     
 -i INVENTORY
    inventory host path or comma separated host list (default=/etc/ansible/hosts)
