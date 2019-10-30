@@ -1,10 +1,22 @@
 ---
+#- name: Add Cloudera Manager yum repository
+#  yum_repository:
+#    name: cloudera-manager
+#    description: Cloudera Manager
+#    baseurl: https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/
+#    gpgkey: https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPM-GPG-KEY-cloudera
+#    gpgcheck: yes
+#    enabled: yes
+#  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
+
+#lokal repository
 - name: Add Cloudera Manager yum repository
   yum_repository:
     name: cloudera-manager
     description: Cloudera Manager
-    baseurl: http://cdpcmdc01.id/6.3/CM/
-    gpgkey: http://cdpcmdc01.id/6.3/CM/RPM-GPG-KEY-cloudera
+    baseurl: http://bccdhcmdc01.customs.go.id/6.3/CM/
+    gpgkey: http://bccdhcmdc01.customs.go.id/6.3/CM/RPM-GPG-KEY-cloudera
     gpgcheck: yes
     enabled: yes
   when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
+

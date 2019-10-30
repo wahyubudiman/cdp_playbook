@@ -1,50 +1,99 @@
 ---
-# Cloudera playbook
-
-- name: Configure Cloudera Manager Repository
-  hosts: cdh_servers
-  roles:
-    - cm_repo
-  tags: cm_repo
-
-#- name: Configure TD Repository
+# Cloudera playbook for klien DJBC
+#- name: Configure Cloudera Manager Repository
+#  hosts: kafka_servers,nifi_servers
+#  roles:
+#    - cm_repo
+#  tags: cm_repo
+#
+##- name: Configure TD Repository
+##  hosts: cdh_servers
+##  roles:
+##    - td_repo
+##  tags: td_repo
+#
+#- name: Configure Prerequisite
 #  hosts: cdh_servers
 #  roles:
-#    - td_repo
-#  tags: td_repo
-
-- name: Configure Prerequisite
-  hosts: cdh_servers
-  roles:
-    - pre_requisite
-  tags: pre_requisite
-
+#    - pre_requisite
+#  tags: pre_requisite
+#
 - name: Install rngd
   hosts: cdh_servers
   roles:
     - rngd
   tags: rngd
-
+#
 - name: Install Java
   hosts: cdh_servers
   roles:
     - java
   tags: java
-
-#- name: Install MariaDB and create databases
-#  hosts: db_server
-#  roles:
-#    - mariadb
-#  tags: mysql
-
+#
+##- name: Install MariaDB and create databases
+##  hosts: db_server
+##  roles:
+##    - mariadb
+##  tags: mysql
+#
 - name: Install MySQL Connector
-  hosts: utility_servers:master_servers:gateway_servers
+  hosts: cdh_servers
   roles:
     - mysql_connector
   tags: mysql
+
+#- name: Install PostgreSQL DB
+#  hosts: db_server
+#  roles:
+#    - postgresql
+#  tags: postgresql
 
 #- name: Configure EPEL Repository
 #  hosts: scm_server
 #  roles:
 #    - epel
 #  tags: epel
+
+- name: Create Master data directory
+  hosts: master_servers
+  roles:
+    - masterdir
+  tags: masterdir
+
+- name: Create Worker data directory
+  hosts: worker_servers
+  roles:
+    - workerdir
+  tags: workerdir
+
+#- name: Create kafka data directory
+#  hosts: kafka_servers
+#  roles:
+#    - kafkadir
+#  tags: kafkadir
+#
+#- name: Create nifi data directory
+#  hosts: nifi_servers
+#  roles:
+#    - nifidir
+#  tags: nifidir
+
+
+#- name: Create OS User Login
+#  hosts: cdh_servers
+#  roles:
+#    - users
+#  tags: users
+
+#Uninstall CDP
+#- name: remove package directory
+#  hosts: cdh_servers
+#  roles:
+#    - removedir
+#  tags: removedir
+
+#- name: remove package directory
+#  hosts: scm_server
+#  roles:
+#    - removedir
+#  tags: removedir

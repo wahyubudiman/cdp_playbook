@@ -1,19 +1,32 @@
 ---
 # Disable SELinux
-- selinux:
-    state: disabled
+#- selinux:
+#    state: disabled
 
-- name: Stop Firewalld Service
-  service: 
-   name=firewalld 
-   state=stopped 
-   enabled=no
+#sementara firewall dioff-kan
+#- name: Stop Firewalld Service
+#  service: 
+#   name=firewalld 
+#   state=stopped 
+#   enabled=no
 
 #name: create directory
-- file:
-   path: /usr/share/java
-   state: directory
-   mode: 0755
+#- file:
+#   path: /usr/share/java
+#   state: directory
+#   mode: 0755
+#
+#- name: Backup a "rc.local" file on the remote machine for editing
+#  copy:
+#    src: /etc/rc.d/rc.local
+#    dest: /etc/rc.d/rc.local.bak
+#    remote_src: yes
+
+- name: Backup a "hosts" file on the remote machine for editing
+  copy:
+    src: /etc/hosts
+    dest: /etc/hosts.bak
+    remote_src: yes
 
 #- name: install the latest version of NTP
 #  yum:
@@ -29,47 +42,58 @@
 - name: Copy configuration file hosts
   template: src=hosts.conf.j2 dest=/etc/hosts
 
-# Set vm.swappiness to 5 in /etc/sysctl.conf
-- sysctl:
-    name: vm.swappiness
-    value: 1
-    state: present
+#- name: Backup a fstab file on the remote machine for editing
+#  copy:
+#    src: /etc/fstab
+#    dest: /etc/fstab.bak
+#    remote_src: yes
+#
+## Set vm.swappiness to 5 in /etc/sysctl.conf
+#- sysctl:
+#    name: vm.swappiness
+#    value: 1
+#    state: present
 
-- name: Disable Transparant Huge Page
-  template: src=rc.local.j2 dest=/etc/rc.d/rc.local mode=0755
-
-- name: Stop Tuned Service
-  service:
-   name=tuned
-   state=stopped
-   enabled=no
+#- name: Disable Transparant Huge Page
+#  template: src=rc.local.j2 dest=/etc/rc.d/rc.local mode=0755
+#
+#- name: Stop Tuned Service
+#  service:
+#   name=tuned
+#   state=stopped
+#   enabled=no
 
 #Pre package
-- name: Install Prereq Package
-  yum: name={{ item }} state=latest update_cache=yes
-  with_items:
-    - MySQL-python
-    - keyutils-libs-devel
-    - krb5-devel
-    - libcom_err-devel
-    - libselinux-devel
-    - libsepol-devel
-    - libverto-devel
-    - m4
-    - mod_ssl
-    - openssl-devel
-    - patch
-    - pcre-devel
-    - postgresql-libs
-    - python-psycopg2
-    - redhat-lsb-core
-    - redhat-lsb-submod-security
-    - spax
-    - zlib-devel
-    - e2fsprogs
-    - e2fsprogs-libs
-    - libcom_err
-    - libss
-    - openssl
-    - openssl-libs
-    - unzip
+#- name: Install Prereq Package
+#  yum: name={{ item }} state=latest update_cache=yes
+#  with_items:
+#- name: Install Prereq v2.8
+#  yum:
+#    name: 
+#      - MySQL-python
+#      - keyutils-libs-devel
+#      - krb5-devel
+#      - libcom_err-devel
+#      - libselinux-devel
+#      - libsepol-devel
+#      - libverto-devel
+#      - m4
+#      - mod_ssl
+#      - openssl-devel
+#      - patch
+#      - pcre-devel
+#      - postgresql-libs
+#      - python-psycopg2
+#      - redhat-lsb-core
+#      - redhat-lsb-submod-security
+#      - spax
+#      - zlib-devel
+#      - e2fsprogs
+#      - e2fsprogs-libs
+#      - libcom_err
+#      - libss
+#      - openssl
+#      - openssl-libs
+#      - unzip
+#    state: present
+#    update_cache: yes

@@ -1,7 +1,16 @@
 ---
+# Versi Ansible 2.4
+#- name: Install Oracle JDK
+#  yum: name={{ item }} state=latest update_cache=yes
+#  with_items:
+#    - oracle-j2sdk1.8
+#    - unzip
 
+#versi 2.8
 - name: Install Oracle JDK
-  yum: name={{ item }} state=latest update_cache=yes
-  with_items:
-    - oracle-j2sdk1.8
-    - unzip
+  yum: 
+    name:
+      - oracle-j2sdk1.8
+    state: latest 
+    update_cache: yes
+    
