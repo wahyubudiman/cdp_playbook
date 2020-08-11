@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #---
 #- name: unMount up device 
 #  mount:
@@ -36,6 +37,59 @@
 #    - { dir: /data30 }
 #      - { dir: /kudu/data }
 #      - { dir: /kudu/wal }
+=======
+---
+#- name: ansible create directory with_items example
+#- file:
+#      path: {{ item.dest }}
+#      mode: {{item.mode}}
+#      state: directory
+#    with_items:
+#      - { dest: '/data1', mode: '0755'}
+#      - { dest: '/data2', mode: '0755'}
+#      - { dest: '/data3', mode: '0755'}
+#      - { dest: '/data4', mode: '0755'}
+#      - { dest: '/data5', mode: '0755'}
+#      - { dest: '/data6', mode: '0755'}
+#      - { dest: '/data7', mode: '0755'}
+#      - { dest: '/data8', mode: '0755'}
+
+#versi 2.4
+#- name: Creates directory
+#  file:
+#    path: "{{ item }}"
+#    state: directory
+#  with_items:
+#  - /data1
+#  - /data2
+#  - /data3
+#  - /data4
+#  - /data5
+#  - /data6
+#  - /data7
+#  - /data8
+#  - /data9
+#  - /data10
+
+- name: unMount up device 
+    mount:
+      path: "{{ item.dir }}"
+      state: unmounted
+    with_items:
+      - { dir: /data1 }
+      - { dir: /data2 }
+      - { dir: /data3 }
+      - { dir: /data4 }
+      - { dir: /data5 }
+      - { dir: /data6 }
+      - { dir: /data7 }
+      - { dir: /data8 }
+      - { dir: /data9 }
+      - { dir: /data10 }
+      - { dir: /data10 }
+      - { dir: /kudu/data }
+      - { dir: /kudu/wal }
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
 
 
 - name: Create a xfs filesystem on /dev/vdN
@@ -44,7 +98,10 @@
     force: yes
     dev: "{{ item }}"
   with_items:
+<<<<<<< HEAD
 #    - /dev/sda
+=======
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
     - /dev/sdb
     - /dev/sdc
     - /dev/sdd
@@ -55,6 +112,7 @@
     - /dev/sdi
     - /dev/sdj
     - /dev/sdk
+<<<<<<< HEAD
 #    - /dev/sdl
 #    - /dev/sdm
 #    - /dev/sdn
@@ -75,6 +133,10 @@
 #    - /dev/sdac
 #    - /dev/sdad
 #    - /dev/sdae
+=======
+    - /dev/sdl
+    - /dev/sdm
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
 
 - name: Mount up device 
   mount:
@@ -84,6 +146,7 @@
     opts: defaults,noatime
     state: mounted
   with_items:
+<<<<<<< HEAD
     - { dir: /data1, disk: /dev/sdb }
     - { dir: /data2, disk: /dev/sdc }
     - { dir: /data3, disk: /dev/sdd }
@@ -114,3 +177,17 @@
 #    - { dir: /data/28, disk: /dev/sdac }
 #    - { dir: /data/29, disk: /dev/sdad }
 #    - { dir: /data/30, disk: /dev/sdae }
+=======
+    - { dir: /kudu/data, disk: /dev/sdb }
+    - { dir: /kudu/wal, disk: /dev/sdc }
+    - { dir: /data1, disk: /dev/sdd }
+    - { dir: /data2, disk: /dev/sde }
+    - { dir: /data3, disk: /dev/sdf }
+    - { dir: /data4, disk: /dev/sdg }
+    - { dir: /data5, disk: /dev/sdh }
+    - { dir: /data6, disk: /dev/sdi }
+    - { dir: /data7, disk: /dev/sdj }
+    - { dir: /data8, disk: /dev/sdk }
+    - { dir: /data9, disk: /dev/sdl }
+    - { dir: /data10, disk: /dev/sdm }
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3

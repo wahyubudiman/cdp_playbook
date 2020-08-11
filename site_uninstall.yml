@@ -1,6 +1,63 @@
 ---
 # Cloudera playbook
 
+<<<<<<< HEAD
+=======
+#- name: Configure Cloudera Manager Repository
+#  hosts: cdh_servers
+#  roles:
+#    - cm_repo
+#  tags: cm_repo
+
+#- name: Configure TD Repository
+#  hosts: cdh_servers
+#  roles:
+#    - td_repo
+#  tags: td_repo
+
+#- name: Configure Prerequisite
+#  hosts: cdh_servers
+#  roles:
+#    - pre_requisite
+#  tags: pre_requisite
+
+#- name: Install rngd
+#  hosts: cdh_servers
+#  roles:
+#    - rngd
+#  tags: rngd
+
+#- name: Install Java
+#  hosts: cdh_servers
+#  roles:
+#    - java
+#  tags: java
+
+#- name: Install MariaDB and create databases
+#  hosts: db_server
+#  roles:
+#    - mariadb
+#  tags: mysql
+
+#- name: Install MySQL Connector
+#  hosts: utility_servers:master_servers
+#  roles:
+#    - mysql_connector
+#  tags: mysql
+
+#- name: Configure EPEL Repository
+#  hosts: scm_server
+#  roles:
+#    - epel
+#  tags: epel
+
+#- name: Create data directory
+#  hosts: worker_servers
+#  roles:
+#    - makedir
+#  tags: makedir
+
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
 - name: remove Worker package directory
   hosts: worker_servers
   roles:

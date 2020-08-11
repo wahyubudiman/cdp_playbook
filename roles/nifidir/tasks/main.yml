@@ -31,6 +31,7 @@
 #  - /data9
 #  - /data10
 
+<<<<<<< HEAD
 - name: unMount up device 
   mount:
      path: "{{ item.dir }}"
@@ -40,6 +41,17 @@
       - { dir: /data2 }
       - { dir: /data3 }
       - { dir: /data4 }
+=======
+#- name: unMount up device 
+#    mount:
+#      path: "{{ item.dir }}"
+#      state: unmounted
+#    with_items:
+#      - { dir: /data1 }
+#      - { dir: /data2 }
+#      - { dir: /data3 }
+#      - { dir: /data4 }
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
 #      - { dir: /data5 }
 #      - { dir: /data6 }
 #      - { dir: /data7 }

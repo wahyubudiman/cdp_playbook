@@ -4,6 +4,7 @@
 #ansible all -i localhost, -m debug -a "msg={{ 'mypwdtd' | password_hash('sha512', 'wahyubudiman') }}"
 #end password hash
 
+<<<<<<< HEAD
 - name: Add group "pentaho" 
   group:
     name: pentaho
@@ -47,8 +48,41 @@
    name: pentaho
    password: '$6$lkpp$2/Kih3216HLVEwfpOu1KJaiyjAaTZWcEyEtVXiPSccaqLv38HdDtt0J0O.n77K34JMUA/lEJhCc.wllPYI9qn0'
    group: pentaho
+=======
+- name: Add group "lkppadmin" 
+  group:
+    name: lkppadmin
+    state: present
+
+- name: Add group "lkppdev" 
+  group:
+    name: lkppdev
+    state: present
+
+- name: Create a login user
+  user:
+   name: lkppadmin
+   password: '$6$lkpp$D5l1/8.Dpt.RanlHgiRwg0lVqivqp2JR1JFNo/Dt2LBkIoNY85f56E/SHIhbTmuTni.rGzqJE1RtWTFUMpX///'
+   group: lkppadmin
    state: present
    shell: /bin/bash       # Defaults to /bin/bash
    system: no             # Defaults to no
    createhome: yes        # Defaults to yes
+   home: /home/lkppadmin  # Defaults to /home/<username>
+
+- name: Create a login user
+  user:
+   name: lkppdev
+   password: '$6$lkpp$.E7ilWqyZxbLK.PeVSc6cyw7NSimIlme26B7GnNjlV2absXWoGIrFTANGl68y/Q/k7ecw3PMC8MhTrkH4MBsT.'
+   group: lkppdev
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
+   state: present
+   shell: /bin/bash       # Defaults to /bin/bash
+   system: no             # Defaults to no
+   createhome: yes        # Defaults to yes
+<<<<<<< HEAD
    home: /home/pentaho  # Defaults to /home/<username>
+=======
+   home: /home/lkppdev  # Defaults to /home/<username>
+
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3

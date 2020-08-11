@@ -5,15 +5,22 @@
    name=cloudera-scm-server
    state=stopped
    enabled=no
+<<<<<<< HEAD
   ignore_errors: yes
+=======
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
 
 - name: Stop scm-agent Service
   service:
    name=cloudera-scm-agent
    state=stopped
    enabled=no   
+<<<<<<< HEAD
   ignore_errors: yes
 
+=======
+   
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
 - name: remove the cloudera package
   yum: 
     name: "{{ item }}"
@@ -22,13 +29,18 @@
   - cloudera-manager-server
   - cloudera-manager-agent
   - cloudera-manager-daemons
+<<<<<<< HEAD
   ignore_errors: yes
 
+=======
+#
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
 - name: remove directory
   file:
     path: "{{ item }}"
     state: absent
   with_items:
+<<<<<<< HEAD
   #- /kudu/data/data
   #- /kudu/wal/consensus
   #- /kudu/wal/wals
@@ -51,6 +63,16 @@
   - /hdlog/sentry
   - /hdlog/hue
   - /hdlog/hue-httpd
+=======
+  - /kudu/data/data
+  - /kudu/wal/consensus
+  - /kudu/wal/wals
+  - /kudu/wal/tablet-meta
+  - /zk/data
+  - /zk/log
+  - /nn/dfs
+  - /jn/dfs
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
 
  
 #- name: Unmount a mounted volume
@@ -60,7 +82,10 @@
 
 - name: unmounted cloudera process directory
   shell: umount /run/cloudera-scm-agent/process
+<<<<<<< HEAD
   ignore_errors: yes
+=======
+>>>>>>> 419dbf1ae5eacd240f3e7c42580e6b8167c298a3
   
 - name: remove directory awal
   shell: rm -Rf /usr/share/cmf /var/lib/cloudera* /var/cache/yum/cloudera* /var/log/cloudera* /var/run/cloudera* /tmp/.scm_prepare_node.lock
