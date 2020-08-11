@@ -18,17 +18,17 @@
 #    auto_attach: true
 
 #versi2.4
-- name: Register user (doni.sungkono) and auto-subscribe
+- name: Register user (ds) and auto-subscribe
   redhat_subscription:
     state: present
-    username: doni.sungkono@techdata.com
-    password: cipar555
+    username: username
+    password: password
     autosubscribe: true
 
 #unregister subscription RHEL
-- name: UnRegister user (doni.sungkono) and auto-subscribe
+- name: UnRegister user (ds) and auto-subscribe
   redhat_subscription:
     state: absent
-    username: doni.sungkono@techdata.com
-    password: cipar555
+    username: user
+    password: password
     autosubscribe: no

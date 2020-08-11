@@ -1,54 +1,10 @@
 #---
-#- name: Add Cloudera Manager yum repository
-#  yum_repository:
-#    name: cloudera-manager
-#    description: Cloudera Manager
-#    baseurl: https://archive.cloudera.com/cm6/6.3.1/redhat7/yum/
-#    gpgkey: https://archive.cloudera.com/cm6/6.3.1/redhat7/yum/RPM-GPG-KEY-cloudera
-#    gpgcheck: yes
-#    enabled: yes
-#  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
-
-
-#lokal repository
-#- name: Add Cloudera Manager yum repository
-#  yum_repository:
-#    name: cloudera-manager
-#    description: Cloudera Manager
-#    baseurl: http://bccdhcmdr01.customs.go.id/6.3/CM/
-#    gpgkey: http://bccdhcmdr01.customs.go.id/6.3/CM/RPM-GPG-KEY-cloudera
-#    gpgcheck: yes
-#    enabled: yes
-#  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
-
-#bpjs kesehatan punya
-#- name: Add Cloudera Manager yum repository
-#  yum_repository:
-#    name: cloudera-manager
-#    description: Cloudera Manager
-#    baseurl: http://172.23.87.15/cloudera-repos/cm6/6.2.0/redhat7/yum
-#    gpgkey: http://172.23.87.15/cloudera-repos/cm6/6.2.0/redhat7/yum/RPM-GPG-KEY-cloudera
-#    gpgcheck: yes
-#    enabled: yes
-#  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
-
-#TSELRAFM-DEV
 - name: Add Cloudera Manager yum repository
   yum_repository:
     name: cloudera-manager
     description: Cloudera Manager
-    baseurl: http://10.52.20.129//CDH513/CMv5.13.1
-    gpgkey: http://10.52.20.129//CDH513/CMv5.13.1/RPM-GPG-KEY-cloudera
+    baseurl: https://archive.cloudera.com/cm6/6.3.1/redhat7/yum/
+    gpgkey: https://archive.cloudera.com/cm6/6.3.1/redhat7/yum/RPM-GPG-KEY-cloudera
     gpgcheck: yes
     enabled: yes
   when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
-
-#- name: Add RHEL  yum repository
-#  yum_repository:
-#    name: rhel-lokal
-#    description: RHEL7 Repos
-#    baseurl: http://10.52.20.129/RHEL7
-#    gpgkey: http://10.52.20.129/RHEL7/RPM-GPG-KEY-redhat-release
-#    gpgcheck: yes
-#    enabled: yes
-#  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")

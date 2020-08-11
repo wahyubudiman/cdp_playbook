@@ -101,14 +101,14 @@ backend impala-shell
     mode tcp
     acl internal_networks src 10.254.2.0/24 127.0.0.1
     tcp-request content reject if ! internal_networks
-    server bigdata-worker01.lkpp.go.id bigdata-worker01.lkpp.go.id:2100ß0 check
-    server bigdata-worker02.lkpp.go.id bigdata-worker02.lkpp.go.id:21000 check
-    server bigdata-worker03.lkpp.go.id bigdata-worker03.lkpp.go.id:21000 check
-    server bigdata-worker04.lkpp.go.id bigdata-worker04.lkpp.go.id:21000 check
-    server bigdata-worker05.lkpp.go.id bigdata-worker05.lkpp.go.id:21000 check
-    server bigdata-worker06.lkpp.go.id bigdata-worker06.lkpp.go.id:21000 check
-    server bigdata-worker07.lkpp.go.id bigdata-worker07.lkpp.go.id:21000 check
-    server bigdata-worker08.lkpp.go.id bigdata-worker08.lkpp.go.id:21000 check
+    server bigdata-worker01.lab bigdata-worker01.lab:2100ß0 check
+    server bigdata-worker02.lab bigdata-worker02.lab:21000 check
+    server bigdata-worker03.lab bigdata-worker03.lab:21000 check
+    server bigdata-worker04.lab bigdata-worker04.lab:21000 check
+    server bigdata-worker05.lab bigdata-worker05.lab:21000 check
+    server bigdata-worker06.lab bigdata-worker06.lab:21000 check
+    server bigdata-worker07.lab bigdata-worker07.lab:21000 check
+    server bigdata-worker08.lab bigdata-worker08.lab:21000 check
 
 frontend impala-jdbc
     description "Impala JDBC"
@@ -125,11 +125,11 @@ backend impala-jdbc
     mode tcp
     acl internal_networks src 10.254.2.0/24 127.0.0.1
     tcp-request content reject if ! internal_networks
-    server bigdata-worker01.lkpp.go.id bigdata-worker01.lkpp.go.id:21050 check
-    server bigdata-worker02.lkpp.go.id bigdata-worker02.lkpp.go.id:21050 check
-    server bigdata-worker03.lkpp.go.id bigdata-worker03.lkpp.go.id:21050 check
-    server bigdata-worker04.lkpp.go.id bigdata-worker04.lkpp.go.id:21050 check
-    server bigdata-worker05.lkpp.go.id bigdata-worker05.lkpp.go.id:21050 check
-    server bigdata-worker06.lkpp.go.id bigdata-worker06.lkpp.go.id:21050 check
-    server bigdata-worker07.lkpp.go.id bigdata-worker07.lkpp.go.id:21050 check
-    server bigdata-worker08.lkpp.go.id bigdata-worker08.lkpp.go.id:21050 check
+    server bigdata-worker01.lab bigdata-worker01.lab:21050 check
+    server bigdata-worker02.lab bigdata-worker02.lab:21050 check
+    server bigdata-worker03.lab bigdata-worker03.lab:21050 check
+    server bigdata-worker04.lab bigdata-worker04.lab:21050 check
+    server bigdata-worker05.lab bigdata-worker05.lab:21050 check
+    server bigdata-worker06.lab bigdata-worker06.lab:21050 check
+    server bigdata-worker07.lab bigdata-worker07.lab:21050 check
+    server bigdata-worker08.lab bigdata-worker08.lab:21050 check
