@@ -1,0 +1,63 @@
+# Note for AWS: 'Public DNS' name is too long for ansible_host, use 'Public IP' (https://github.com/ansible/ansible/issues/11536)
+
+[scm_server]
+hdnndapp01        license_file=/path/to/cloudera_license.txt
+
+[db_server]
+hdnndapp01
+
+#[krb5_server]
+#utility1.co.id        default_realm=REALM.ID
+
+[utility_servers:children]
+scm_server
+#krb5_server
+
+[gateway_servers]
+hdnndapp01       host_template=HostTemplate-Gateway role_ref_names=HDFS-HTTPFS-1
+hdnndapp02
+
+[master_servers]
+hdnndapp01  host_template=HostTemplate-Master1
+hdnndapp02
+
+[worker_servers]
+hdsndapp01
+hdsndapp02
+hdsndapp03
+hdsndapp04
+hdsndapp05
+hdsndapp06
+
+[worker_servers:vars]
+host_template=HostTemplate-Workers
+
+[kafka_servers]
+hdsndapp01
+hdsndapp02
+hdsndapp03
+hdsndapp04
+hdsndapp05
+hdsndapp06
+
+
+[compute_servers]
+hdcndapp01
+hdcndapp02
+hdcndapp03
+hdcndapp04
+
+
+[cdh_servers:children]
+scm_server
+master_servers
+worker_servers
+gateway_servers
+
+[all:vars]
+ansible_user=root
+
+#run sebagai sudo bigdata
+#[all:vars]
+#ansible_user=bigdata
+

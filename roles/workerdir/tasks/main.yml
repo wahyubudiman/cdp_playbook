@@ -1,0 +1,116 @@
+#---
+#- name: unMount up device 
+#  mount:
+#    path: "{{ item.dir }}"
+#    state: unmounted
+#  with_items:
+#    - { dir: /data1 }
+#    - { dir: /data2 }
+#    - { dir: /data3 }
+#    - { dir: /data4 }
+#    - { dir: /data5 }
+#    - { dir: /data6 }
+#    - { dir: /data7 }
+#    - { dir: /data8 }
+#    - { dir: /data9 }
+#    - { dir: /data10 }
+#    - { dir: /data11 }
+#    - { dir: /data12 }
+#    - { dir: /data13 }
+#    - { dir: /data14 }
+#    - { dir: /data15 }
+#    - { dir: /data16 }
+#    - { dir: /data17 }
+#    - { dir: /data18 }
+#    - { dir: /data19 }
+#    - { dir: /data20 }
+#    - { dir: /data21 }
+#    - { dir: /data22 }
+#    - { dir: /data23 }
+#    - { dir: /data24 }
+#    - { dir: /data25 }
+#    - { dir: /data26 }
+#    - { dir: /data27 }
+#    - { dir: /data28 }
+#    - { dir: /data29 }
+#    - { dir: /data30 }
+#      - { dir: /kudu/data }
+#      - { dir: /kudu/wal }
+
+
+- name: Create a xfs filesystem on /dev/vdN
+  filesystem:
+    fstype: xfs
+    force: yes
+    dev: "{{ item }}"
+  with_items:
+#    - /dev/sda
+    - /dev/sdb
+    - /dev/sdc
+    - /dev/sdd
+    - /dev/sde
+    - /dev/sdf
+    - /dev/sdg
+    - /dev/sdh
+    - /dev/sdi
+    - /dev/sdj
+    - /dev/sdk
+#    - /dev/sdl
+#    - /dev/sdm
+#    - /dev/sdn
+#    - /dev/sdo
+#    - /dev/sdp
+#    - /dev/sdq
+#    - /dev/sdr
+#    - /dev/sds
+#    - /dev/sdt
+#    - /dev/sdu
+#    - /dev/sdv
+#    - /dev/sdw
+#    - /dev/sdx
+#    - /dev/sdy
+#    - /dev/sdz
+#    - /dev/sdaa
+#    - /dev/sdab
+#    - /dev/sdac
+#    - /dev/sdad
+#    - /dev/sdae
+
+- name: Mount up device 
+  mount:
+    path: "{{ item.dir }}"
+    src: "{{ item.disk }}"
+    fstype: xfs
+    opts: defaults,noatime
+    state: mounted
+  with_items:
+    - { dir: /data1, disk: /dev/sdb }
+    - { dir: /data2, disk: /dev/sdc }
+    - { dir: /data3, disk: /dev/sdd }
+    - { dir: /data4, disk: /dev/sde }
+    - { dir: /data5, disk: /dev/sdf }
+    - { dir: /data6, disk: /dev/sdg }
+    - { dir: /data7, disk: /dev/sdh }
+    - { dir: /data8, disk: /dev/sdi }
+    - { dir: /data9, disk: /dev/sdj }
+    - { dir: /data10, disk: /dev/sdk }
+#    - { dir: /data/11, disk: /dev/sdl }
+#    - { dir: /data/12, disk: /dev/sdm }
+#    - { dir: /data/13, disk: /dev/sdn }
+#    - { dir: /data/14, disk: /dev/sdo }
+#    - { dir: /data/15, disk: /dev/sdp }
+#    - { dir: /data/16, disk: /dev/sdq }
+#    - { dir: /data/17, disk: /dev/sdr }
+#    - { dir: /data/18, disk: /dev/sds }
+#    - { dir: /data/19, disk: /dev/sdt }
+#    - { dir: /data/20, disk: /dev/sdu }
+#    - { dir: /data/21, disk: /dev/sdv }
+#    - { dir: /data/22, disk: /dev/sdw }
+#    - { dir: /data/23, disk: /dev/sdx }
+#    - { dir: /data/24, disk: /dev/sdy }
+#    - { dir: /data/25, disk: /dev/sdz  }
+#    - { dir: /data/26, disk: /dev/sdaa }
+#    - { dir: /data/27, disk: /dev/sdab }
+#    - { dir: /data/28, disk: /dev/sdac }
+#    - { dir: /data/29, disk: /dev/sdad }
+#    - { dir: /data/30, disk: /dev/sdae }

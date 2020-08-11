@@ -1,0 +1,53 @@
+---
+#- name: unMount up device 
+#  mount:
+#     path: "{{ item.dir }}"
+#     state: unmounted
+#  with_items:
+#      - { dir: /data1 }
+#      - { dir: /data2 }
+#      - { dir: /data3 }
+#      - { dir: /data4 }
+#      - { dir: /data5 }
+#      - { dir: /data6 }
+#      - { dir: /data7 }
+#      - { dir: /data8 }
+#      - { dir: /data9 }
+#      - { dir: /data10 }
+
+
+- name: Create a xfs filesystem on /dev/sdN
+  filesystem:
+    fstype: xfs
+    force: yes
+    dev: "{{ item }}"
+  with_items:
+    - /dev/sdb
+#    - /dev/sdb2
+#    - /dev/sdb
+#    - /dev/sdc
+#    - /dev/sdd
+#    - /dev/sde
+#    - /dev/sdf
+#    - /dev/sdg
+#    - /dev/sdh
+#    - /dev/sdi
+    
+- name: Mount up device 
+  mount:
+    path: "{{ item.dir }}"
+    src: "{{ item.disk }}"
+    fstype: xfs
+    opts: defaults,noatime
+    state: mounted
+  with_items:
+    - { dir: /Landing_Directory, disk: /dev/sdb }
+#    - { dir: /hdlog, disk: /dev/sdb2 }
+#    - { dir: /data1, disk: /dev/sdb }
+#    - { dir: /data2, disk: /dev/sdc }
+#    - { dir: /data3, disk: /dev/sdd }
+#    - { dir: /data4, disk: /dev/sde }
+#    - { dir: /data5, disk: /dev/sdf }
+#    - { dir: /data6, disk: /dev/sdg }
+#    - { dir: /data7, disk: /dev/sdh }
+#    - { dir: /data8, disk: /dev/sdi }

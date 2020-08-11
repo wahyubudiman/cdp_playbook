@@ -1,0 +1,87 @@
+#---
+#- name: Ensure Kafka Storage Configuration
+#  tasks:
+- name: Prof
+  parted:
+     device: /dev/sda
+     unit: GiB
+     state: info
+  register: sda_info
+
+#- debug:
+#    msg: I'm so Big {{ ansible_devices.vdb.size }}
+
+- name: Correct partitions exist on /dev/sda
+  parted:
+    device: /dev/sda
+    state: present
+    unit: GiB
+    number: 1
+    part_end: 2000GiB
+  ignore_errors: True
+
+#- debug:
+#    msg:
+
+- name: Use Item
+  parted:
+    device: /dev/sda
+    state: present
+    unit: GiB
+    number: 2
+    part_start: 2000GiB
+    part_end: 3700GiB
+
+
+#- name: unMount up device 
+#  mount:
+#     path: "{{ item.dir }}"
+#     state: unmounted
+#  with_items:
+#      - { dir: /data1 }
+#      - { dir: /data2 }
+#      - { dir: /data3 }
+#      - { dir: /data4 }
+#      - { dir: /data5 }
+#      - { dir: /data6 }
+#      - { dir: /data7 }
+#      - { dir: /data8 }
+#      - { dir: /data9 }
+#      - { dir: /data10 }
+
+
+- name: Create a xfs filesystem on /dev/sdN
+  filesystem:
+    fstype: xfs
+    force: yes
+    dev: "{{ item }}"
+  with_items:
+    - /dev/sda1
+    - /dev/sda2
+#    - /dev/sdb
+#    - /dev/sdc
+#    - /dev/sdd
+#    - /dev/sde
+#    - /dev/sdf
+#    - /dev/sdg
+#    - /dev/sdh
+#    - /dev/sdi
+    
+- name: Mount up device 
+  mount:
+    path: "{{ item.dir }}"
+    src: "{{ item.disk }}"
+    fstype: xfs
+    opts: defaults,noatime
+    state: mounted
+  with_items:
+    - { dir: /kafka_topics, disk: /dev/sda1 }
+    - { dir: /hdlog, disk: /dev/sda2 }
+#    - { dir: /data1, disk: /dev/sdb }
+#    - { dir: /data2, disk: /dev/sdc }
+#    - { dir: /data3, disk: /dev/sdd }
+#    - { dir: /data4, disk: /dev/sde }
+#    - { dir: /data5, disk: /dev/sdf }
+#    - { dir: /data6, disk: /dev/sdg }
+#    - { dir: /data7, disk: /dev/sdh }
+#    - { dir: /data8, disk: /dev/sdi }

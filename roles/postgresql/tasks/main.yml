@@ -1,0 +1,7 @@
+- name: Install PostgreSQL packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - postgresql-server
+
+- name: Start PostgreSQL Service
+  service: name=postgresql state=started enabled=yes

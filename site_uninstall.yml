@@ -1,0 +1,14 @@
+---
+# Cloudera playbook
+
+- name: remove Worker package directory
+  hosts: worker_servers
+  roles:
+    - removedir
+  tags: removedir
+
+- name: remove CM,Gateway,Master package directory
+  hosts: scm_server,gateway_servers,master_servers
+  roles:
+    - cm_uninstall
+  tags: cm_uninstall

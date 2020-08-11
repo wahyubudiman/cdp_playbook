@@ -6,11 +6,21 @@
 #    - oracle-j2sdk1.8
 #    - unzip
 
+- name: Add JDK 8 yum repository
+  yum_repository:
+    name: java8
+    description: JDK 8
+    baseurl: http://10.52.20.129/CDH513/JDK8
+    gpgkey: http://10.52.20.129/CDH513/JDK8/RPM-GPG-KEY-cloudera
+    gpgcheck: no
+    enabled: yes
+  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
+
 #versi 2.8
 - name: Install Oracle JDK
   yum: 
     name:
-      - oracle-j2sdk1.8
+      - jdk1.8
     state: latest 
     update_cache: yes
     

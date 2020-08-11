@@ -1,17 +1,34 @@
----
-- name: copy host file to target
-  copy:
-    src=/etc/hosts
-    dest=/etc/hosts
-    owner=root
-    group=root
-    mode=0755
+#lokal repo
+#- name: Add lokal rhel yum repository
+#  yum_repository:
+#    name: lokal
+#    description: rhel lokal Repo
+#    baseurl: http://srv9-apl-dwh1/rpmrepo
+#    gpgcheck: no
+#    enabled: yes
+#  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
 
-- name: Add TD yum repository
-  yum_repository:
-    name: td
-    description: TD Repo
-    baseurl: http://tdbdamgr01/rpm/
-    gpgcheck: no
-    enabled: yes
-  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
+#Add Subscription
+#versi latest
+#- name: Register user (doni.sungkono) and auto-subscribe
+#  redhat_subscription:
+#    state: present
+#    username: doni.sungkono@techdata.com
+#    password: cipar555
+#    auto_attach: true
+
+#versi2.4
+- name: Register user (doni.sungkono) and auto-subscribe
+  redhat_subscription:
+    state: present
+    username: doni.sungkono@techdata.com
+    password: cipar555
+    autosubscribe: true
+
+#unregister subscription RHEL
+- name: UnRegister user (doni.sungkono) and auto-subscribe
+  redhat_subscription:
+    state: absent
+    username: doni.sungkono@techdata.com
+    password: cipar555
+    autosubscribe: no

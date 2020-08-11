@@ -1,11 +1,11 @@
 ---
 ##versi 2.4
-#- name: Stop scm-server Service
-#  service:
-#   name=cloudera-scm-server
-#   state=stopped
-#   enabled=no
-#  ignore_errors: yes
+- name: Stop scm-server Service
+  service:
+   name=cloudera-scm-server
+   state=stopped
+   enabled=no
+  ignore_errors: yes
 
 - name: Stop scm-agent Service
   service:
@@ -29,32 +29,16 @@
     path: "{{ item }}"
     state: absent
   with_items:
-  #- /kudu/data/yarn
-  #- /kudu/wal/yarn
   #- /kudu/data/data
   #- /kudu/wal/consensus
   #- /kudu/wal/wals
   #- /kudu/wal/tablet-meta
-  - /data1/dfs
-  - /data2/dfs
-  - /data3/dfs
-  - /data4/dfs
-  - /data5/dfs
-  - /data6/dfs
-  - /data7/dfs
-  - /data8/dfs
-  - /data9/dfs
-  - /data10/dfs
-  - /data1/yarn
-  - /data2/yarn
-  - /data3/yarn
-  - /data4/yarn
-  - /data5/yarn
-  - /data6/yarn
-  - /data7/yarn
-  - /data8/yarn
-  - /data9/yarn
-  - /data10/yarn
+  #- /zk/data
+  #- /zk/log
+  #- /nn/dfs
+  #- /jn/dfs
+  #only on master
+  - /hadoop/data1
   - /hdlog/hadoop-hdfs
   - /hdlog/hadoop-yarn
   - /hdlog/hbase
@@ -62,19 +46,19 @@
   - /hdlog/spark
   - /hdlog/yarn
   - /hdlog/zookeeper
-  - /kafka_topics/data
-  - /kafka_topics/kafka
-  - /kafka_topics/yarn
-  
+  - /hdlog/hadoop-mapreduce
+  - /hdlog/oozie
+  - /hdlog/sentry
+  - /hdlog/hue
+  - /hdlog/hue-httpd
 
-
-
+ 
 #- name: Unmount a mounted volume
 #  mount:
 #    path: /run/cloudera-scm-agent/process
 #    state: unmounted
-  
-- name: unmounted clouder process directory
+
+- name: unmounted cloudera process directory
   shell: umount /run/cloudera-scm-agent/process
   ignore_errors: yes
   
