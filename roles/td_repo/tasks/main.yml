@@ -3,18 +3,18 @@
 #  yum_repository:
 #    name: lokal
 #    description: rhel lokal Repo
-#    baseurl: http://srv9-apl-dwh1/rpmrepo
+#    baseurl: http://dwh1/rpmrepo
 #    gpgcheck: no
 #    enabled: yes
 #  when: (ansible_distribution|lower == "redhat") or (ansible_distribution|lower == "centos")
 
 #Add Subscription
 #versi latest
-#- name: Register user (doni.sungkono) and auto-subscribe
+#- name: Register user (ds) and auto-subscribe
 #  redhat_subscription:
 #    state: present
-#    username: doni.sungkono@techdata.com
-#    password: cipar555
+#    username: user
+#    password: password
 #    auto_attach: true
 
 #versi2.4
